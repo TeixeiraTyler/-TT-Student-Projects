@@ -1,0 +1,9 @@
+const foo = 12;
+var x, y;
+begin	
+  x := y + 56;
+  y := 16;
+  if x > 5 then
+    x := x - y;
+  write x;
+end.

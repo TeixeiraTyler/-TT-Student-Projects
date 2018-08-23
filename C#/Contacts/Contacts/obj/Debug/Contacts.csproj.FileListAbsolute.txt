@@ -1,0 +1,7 @@
+C:\Users\tyler\Documents\Visual Studio 2017\Projects\Contacts\Contacts\bin\Debug\Contacts.exe.config
+C:\Users\tyler\Documents\Visual Studio 2017\Projects\Contacts\Contacts\bin\Debug\Contacts.exe
+C:\Users\tyler\Documents\Visual Studio 2017\Projects\Contacts\Contacts\bin\Debug\Contacts.pdb
+C:\Users\tyler\Documents\Visual Studio 2017\Projects\Contacts\Contacts\obj\Debug\Contacts.csprojResolveAssemblyReference.cache
+C:\Users\tyler\Documents\Visual Studio 2017\Projects\Contacts\Contacts\obj\Debug\Contacts.csproj.CoreCompileInputs.cache
+C:\Users\tyler\Documents\Visual Studio 2017\Projects\Contacts\Contacts\obj\Debug\Contacts.exe
+C:\Users\tyler\Documents\Visual Studio 2017\Projects\Contacts\Contacts\obj\Debug\Contacts.pdb
