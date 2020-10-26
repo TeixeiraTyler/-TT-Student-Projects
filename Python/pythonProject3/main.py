@@ -9,6 +9,7 @@ from sklearn.naive_bayes import BernoulliNB, GaussianNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import cross_val_score, train_test_split, KFold, cross_val_predict
 from sklearn.preprocessing import LabelEncoder
+from sklearn import svm
 
 pd.set_option('display.max_columns', 20)
 pd.set_option('display.max_rows', 1000)
@@ -42,55 +43,10 @@ test_target = test_df['WinOrLose']
 train_df = train_df.drop(columns=["Date", "ID", "Opponent", "Is_Home_or_Away", "Is_Opponent_in_AP25_Preseason", "Media", "Label", "WinOrLose"])
 test_df = test_df.drop(columns=["Date", "ID", "Opponent", "Is_Home_or_Away", "Is_Opponent_in_AP25_Preseason", "Media", "Label", "WinOrLose"])
 
-NBclassifier = GaussianNB()
-NBclassifier.fit(train_df, train_target)
-NBpredictedValues = NBclassifier.predict(test_df)
+clf = svm.SVC(gamma=0.001, C=100)
+clf.fit()
+pred = clf.predict(test_df)
+acc = metrics.accuracy_score(test_df, pred)
 
-KNNclassifier = KNeighborsClassifier(n_neighbors=5)
-KNNclassifier.fit(train_df, train_target)
-KNNpredictedValues = NBclassifier.predict(test_df)
-
-print("Bayesian Values")
-print(metrics.accuracy_score(test_target, NBpredictedValues))
-print(metrics.precision_score(test_target, NBpredictedValues))
-print(metrics.recall_score(test_target, NBpredictedValues))
-print(metrics.f1_score(test_target, NBpredictedValues))
-
-print("KNN Values")
-print(metrics.accuracy_score(test_target, KNNpredictedValues))
-print(metrics.precision_score(test_target, KNNpredictedValues))
-print(metrics.recall_score(test_target, KNNpredictedValues))
-print(metrics.f1_score(test_target, KNNpredictedValues))
-
-# Task 2 #
-print("Task 2")
-
-trainTitanic_df = pd.read_csv('trainTitanic.csv')
-testTitanic_df = pd.read_csv('testTitanic.csv')
-trainTitanic_target = trainTitanic_df["Survived"]
-
-sex_val = LabelEncoder()
-trainTitanic_df['Sex_val'] = sex_val.fit_transform(trainTitanic_df['Sex'])
-
-trainTitanic_df = trainTitanic_df.drop(columns=["PassengerId", "Survived", "Name", "Sex", "Ticket", "Fare", "Cabin", "Embarked"])
-
-trainTitanic_df = trainTitanic_df.fillna(0)
-
-NBclassifier = GaussianNB()
-NBpredictedValues = cross_val_predict(NBclassifier, trainTitanic_df, trainTitanic_target)
-
-KNNclassifier = KNeighborsClassifier(n_neighbors=8)
-KNNpredictedValues = cross_val_predict(KNNclassifier, trainTitanic_df, trainTitanic_target)
-
-print("Bayesian Values")
-print(metrics.accuracy_score(trainTitanic_target, NBpredictedValues))
-print(metrics.precision_score(trainTitanic_target, NBpredictedValues))
-print(metrics.recall_score(trainTitanic_target, NBpredictedValues))
-print(metrics.f1_score(trainTitanic_target, NBpredictedValues))
-
-print("KNN Values")
-print(metrics.accuracy_score(trainTitanic_target, KNNpredictedValues))
-print(metrics.precision_score(trainTitanic_target, KNNpredictedValues))
-print(metrics.recall_score(trainTitanic_target, KNNpredictedValues))
-print(metrics.f1_score(trainTitanic_target, KNNpredictedValues))
+print(acc)
 
